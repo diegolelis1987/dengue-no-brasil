@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #32CD32;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#main-header{
+     color: #ffffff
+}
+
+#main-header-area_restrita{
+     color: #ffffff
+}
+
+header h1, header p {
+    margin: 5px 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+#chartContainer {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+#dengueChart {
+    width: 100%;
+    height: auto;
+}
+
+#loginForm {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#loginForm h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#loginForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm input[type="text"], #loginForm input[type="password"], #loginForm button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#loginForm input[type="text"]:focus, #loginForm input[type="password"]:focus, #loginForm button:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+#loginForm button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#loginForm button:hover {
+    background-color: #45a049;
+}
+
+#loginForm a {
+    display: block;
+    text-align: center;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#loginForm a:hover {
+    background-color: darkred;
+}
+
+footer img {
+    vertical-align: middle;
+}
+
+footer p {
+    display: inline;
+    margin-left: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#imageUpload {
+    margin-top: 20px;
+}
+
+button{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #32CD32;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#exitButton {
+    display: block;
+    margin-top: 10px;
+    color: white;
+    background-color: red;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+#exitButton:hover {
+    background-color: darkred;
+}
+
+#exitdButton{
+    margin-top: 20px;
+}
+
+#uploadButton {
+    display: block;
+    margin-top: 10px;
+    color: white;
+    background-color: #32CD32;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+#uploadButton:hover {
+    background-color: darkred;
+}
