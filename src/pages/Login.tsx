@@ -1,111 +1,20 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertTriangle } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail, ShieldCheck } from 'lucide-react';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const { login, loading } = useAuth();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    
-    try {
-      await login(email, password);
-    } catch (error) {
-      setError('Credenciais inválidas. Por favor, tente novamente.');
-    }
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dengue-dark to-dengue-primary p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">DengueEye</h1>
-          <p className="text-dengue-light text-sm">Sistema de Monitoramento de Focos de Dengue</p>
-        </div>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>Login</CardTitle>
-            <CardDescription>
-              Entre com suas credenciais para acessar o sistema.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {error && (
-              <Alert className="mb-4 bg-dengue-warning/10 text-dengue-warning border-dengue-warning">
-                <AlertTriangle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-            
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
-                  <Input
-                    id="email"
-                    placeholder="exemplo@email.com"
-                    required
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="text-sm font-medium">Senha</label>
-                    <a href="#" className="text-sm text-dengue-primary hover:underline">
-                      Esqueceu a senha?
-                    </a>
-                  </div>
-                  <Input
-                    id="password"
-                    required
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full"
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-dengue-primary hover:bg-dengue-dark"
-                  disabled={loading}
-                >
-                  {loading ? 'Entrando...' : 'Entrar'}
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <p className="text-sm text-muted-foreground">
-              Para acesso ao sistema, contate o administrador.
-            </p>
-          </CardFooter>
-        </Card>
-        
-        <div className="mt-8 text-center">
-          <p className="text-sm text-dengue-light">
-            Sistema de monitoramento via drone para detecção de focos de dengue
-          </p>
-          <p className="text-xs text-dengue-light mt-2">
-            © {new Date().getFullYear()} DengueEye - Todos os direitos reservados
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+  const [email, setEmail] = useState('admin@example.com');
+  const [password, setPassword] = useState('password');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const submit = async (event: React.FormEvent) => { event.preventDefault(); setError(''); try { await login(email, password); } catch { setError('Use as credenciais demonstrativas informadas abaixo.'); } };
+  return <div className="min-h-screen bg-[#F4FBF4] p-4 text-emerald-950 sm:p-8"><div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-6xl overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-2xl shadow-emerald-900/10 lg:grid-cols-[1.05fr_.95fr]">
+    <section className="relative hidden overflow-hidden bg-[#1B5E20] p-10 text-white lg:flex lg:flex-col lg:justify-between"><div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#8BCF8D]/25 blur-3xl" /><div className="absolute -bottom-24 left-12 h-64 w-64 rounded-full bg-[#F5D76E]/20 blur-3xl" /><div className="relative"><div className="flex items-center gap-3 text-xl font-bold"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-[#1B5E20]"><ShieldCheck /></span>Dengue<span className="-ml-3 text-[#A5E1AC]">Eye</span></div><div className="mt-24 max-w-md"><p className="text-xs font-bold uppercase tracking-[.2em] text-[#BFEBC3]">Inteligência operacional</p><h1 className="mt-4 text-4xl font-bold leading-tight">Visibilidade para agir antes do risco avançar.</h1><p className="mt-5 text-base leading-7 text-emerald-50/85">Uma demonstração de como equipes podem organizar evidências territoriais, alertas e resposta de campo.</p></div></div><div className="relative rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur"><p className="text-sm font-semibold">Ambiente de demonstração</p><p className="mt-1 text-sm leading-6 text-emerald-50/80">Dados operacionais são exemplos locais e não substituem a vigilância epidemiológica oficial.</p></div></section>
+    <section className="flex items-center justify-center p-6 sm:p-10"><div className="w-full max-w-md"><div className="mb-10 lg:hidden"><div className="flex items-center gap-2 text-xl font-bold"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#1B5E20] text-white"><ShieldCheck /></span>Dengue<span className="-ml-2 text-[#2E8B57]">Eye</span></div></div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#2E8B57]">Acesso seguro</p><h2 className="mt-3 text-3xl font-bold tracking-tight">Entrar na plataforma</h2><p className="mt-2 text-sm leading-6 text-emerald-950/65">Use sua conta para acessar o centro de comando.</p>{error && <Alert className="mt-6 border-red-200 bg-red-50 text-red-900"><LockKeyhole className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}<form className="mt-8 space-y-5" onSubmit={submit}><label className="block text-sm font-semibold">E-mail<div className="relative mt-2"><Mail className="absolute left-3 top-3 h-4 w-4 text-[#2E8B57]" /><Input className="h-11 border-emerald-200 pl-10 focus-visible:ring-[#2E8B57]" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></div></label><label className="block text-sm font-semibold">Senha<div className="relative mt-2"><LockKeyhole className="absolute left-3 top-3 h-4 w-4 text-[#2E8B57]" /><Input className="h-11 border-emerald-200 pl-10 pr-10 focus-visible:ring-[#2E8B57]" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} required /><button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-2.5 text-emerald-800" aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}>{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button></div></label><Button className="h-11 w-full bg-[#2E8B57] font-bold hover:bg-[#1B5E20]" disabled={loading}>{loading ? 'Autenticando…' : <>Acessar centro de comando <ArrowRight className="ml-2 h-4 w-4" /></>}</Button></form><div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm"><p className="font-bold text-amber-950">Credenciais de demonstração</p><p className="mt-1 text-amber-900/80"><code>admin@example.com</code> · <code>password</code></p></div><p className="mt-7 text-xs leading-5 text-emerald-950/55">Este protótipo não possui recuperação de senha nem integração de autenticação. Para acesso de produção, conecte um provedor de identidade.</p></div></section>
+  </div></div>;
 };
-
 export default Login;
